@@ -10,3 +10,5 @@ doorResult = doorRule.checkRule(model)
 
 print("Window result:", windowResult)
 print("Door result:", doorResult)
+
+# UPDATED #
