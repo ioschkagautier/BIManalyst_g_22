@@ -19,6 +19,8 @@ Arguments of the Function:
 
 The script will export the number and type of columns found on the selected level.
 
+There is no need to add a code line at the end where you print the results of the function, you just have to call the function because the print are added inside.
+
 
 Usage example (to get the columns data about the 5th level):
 
