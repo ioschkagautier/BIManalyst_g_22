@@ -1,8 +1,7 @@
 1. Group 22
 2. Structure
 3. Amount and Type of Column on Chosen Floor
-4.
-
+4. Our script checks the claim made on chapter 7.3 Columns, table 15 & 16 of the structural report. We want to check if they assign the correct columns to the different floors.
 
 5. The script allows the user to check for columns on each level, including the quantity and their type based on measurements. 
 
