@@ -1,8 +1,7 @@
 1. Group 22
 2. Structure
 3. Amount and Type of Column on Chosen Floor
-4.
-
+4. Our script checks the claim made on chapter 7.3 Columns, table 15 & 16 of the structural report. We want to check if they assign the correct columns to the different floors.
 
 5. The script allows the user to check for columns on each level, including the quantity and their type based on measurements. 
 
@@ -19,6 +18,8 @@ Arguments of the Function:
 2- Input the number of the level you're interested in (e.g., desired_level_num = 2)
 
 The script will export the number and type of columns found on the selected level.
+
+There is no need to add a code line at the end where you print the results of the function, you just have to call the function because the print are added inside.
 
 
 Usage example (to get the columns data about the 5th level):
