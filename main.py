@@ -13,3 +13,6 @@ print("Window result:", windowResult)
 print("Door result:", doorResult)
 
 
+import ifcopenshell
+print(ifcopenshell.version)
+model = ifcopenshell.file()
