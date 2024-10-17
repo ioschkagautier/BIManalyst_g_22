@@ -1,13 +1,13 @@
-#StreamID : 2a3df00e3e
-# C:/Users/Lenovo/Documents/Studium/DTU/2_Semester/BIM/CES_BLD_24_06_STR.ifc
-#Token: e84c64a17e9103569a55ccb97e2f00526982240229
+#Input your own IFC file path line 11 :)
+#Input Excel sheet file path line 171 :)
+#you might have to do pip install xlwings
 
 import ifcopenshell
 import ifcopenshell.geom
 import xlwings as xw
 
 # Open the IFC file
-ifc_file = ifcopenshell.open('C:/Users/Lenovo/Documents/Studium/DTU/2_Semester/BIM/CES_BLD_24_06_STR.ifc')
+ifc_file = ifcopenshell.open('C:/Users/Lenovo/Documents/Studium/DTU/2_Semester/BIM/CES_BLD_24_06_STR.ifc') ## Put your file path
 
 # Define concrete strength assumption for missing data
 concrete_strength = " C25/30"
@@ -167,7 +167,7 @@ column_info_dict = process_columns(columns)
 column_info_dict = add_reinforcement_info(column_info_dict)
 
 # Open the workbook with xlwings
-wb = xw.Book('C:/Users/Lenovo/Documents/Studium/DTU/2_Semester/BIM/A2/LCA_Advanced_BIM_to_Python.xlsx')
+wb = xw.Book('C:/Users/Lenovo/Documents/Studium/DTU/2_Semester/BIM/A2/LCA_Advanced_BIM_to_Python.xlsx') #Input Excel file path here (Excel sheet can be found in A2 GitHub)
 
 # Select the 'Input' sheet to write the data
 input_sheet = wb.sheets['Input']
@@ -242,12 +242,11 @@ for (type_name, material, volume, height), data in column_info_dict.items():
             'normalized_gwp': normalized_gwp
         })
 
+        print(type_name, height, 'GWP including reinforcement '+  str(real_gwp))
+
 # Print the list (if needed)
-for entry in gwp_data_list:
-    print(f"Type: {entry['type_name']}, Height: {entry['height']}m, Normalized GWP: {entry['normalized_gwp']}")
-
-
-
+#for entry in gwp_data_list:
+    #print(f"Type: {entry['type_name']}, Height: {entry['height']}m, Normalized GWP: {entry['normalized_gwp']}")
 
 
 
@@ -294,9 +293,6 @@ def interpolate_color(normalized_gwp):
 gwp_data_with_colors = []
 
 # Check and print entries in the list before processing
-print("Initial Data Inspection:")
-for entry in gwp_data_list:
-    print(entry)
 
 for entry in gwp_data_list:
     type_name = entry.get('type_name', 'Unknown')  # Get the type name or use 'Unknown' if missing
