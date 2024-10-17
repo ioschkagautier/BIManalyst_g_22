@@ -1,3 +1,9 @@
+# you might have to set up a speckle account i am not sure... i have used my account that i have connected to my speckle manager (therefore i used default account)
+# You might have to see if there are other ways if you cant use my account, i know one can also use a token instead of account.
+# e84c64a17e9103569a55ccb97e2f00526982240229 this is my token if you can use it for anything
+#the speckle setup happens at the end of this script in step 6 + 7 (line 125-132)
+# Also make sure to pip install specklepy
+
 import ifcopenshell
 import ifcopenshell.geom
 from specklepy.api.client import SpeckleClient
@@ -36,7 +42,7 @@ def calculate_bounding_box(vertices):
     return length, width, height
 
 # 1. Open the IFC file
-ifc_file_path = 'C:/Users/Lenovo/Documents/Studium/DTU/2_Semester/BIM/CES_BLD_24_06_STR.ifc'
+ifc_file_path = 'C:/Users/Lenovo/Documents/Studium/DTU/2_Semester/BIM/CES_BLD_24_06_STR.ifc'  #put your ifc file path
 ifc_file = ifcopenshell.open(ifc_file_path)
 
 # 2. Extract all columns
