@@ -1,3 +1,5 @@
+#pip install ifcopenshell specklepy
+
 import ifcopenshell
 import ifcopenshell.geom
 from specklepy.api.client import SpeckleClient
