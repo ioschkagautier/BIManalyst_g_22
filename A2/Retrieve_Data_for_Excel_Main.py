@@ -1,13 +1,22 @@
-#Input your own IFC file path line 11 :)
-#Input Excel sheet file path line 171 :)
-#you might have to do pip install xlwings
+#StreamID : 2a3df00e3e
+# C:/Users/Lenovo/Documents/Studium/DTU/2_Semester/BIM/CES_BLD_24_06_STR.ifc
+#Token: e84c64a17e9103569a55ccb97e2f00526982240229
 
+#for Excel part
 import ifcopenshell
 import ifcopenshell.geom
 import xlwings as xw
+#for Speckle part
+from specklepy.api.client import SpeckleClient
+from specklepy.api.credentials import get_default_account
+from specklepy.objects.geometry import Mesh
+from specklepy.objects import Base
+from specklepy.transports.server import ServerTransport
+from specklepy.api.operations import send
+import random
 
 # Open the IFC file
-ifc_file = ifcopenshell.open('C:/Users/Lenovo/Documents/Studium/DTU/2_Semester/BIM/CES_BLD_24_06_STR.ifc') ## Put your file path
+ifc_file = ifcopenshell.open('C:/Users/Lenovo/Documents/Studium/DTU/2_Semester/BIM/CES_BLD_24_06_STR.ifc')
 
 # Define concrete strength assumption for missing data
 concrete_strength = " C25/30"
@@ -57,6 +66,7 @@ def extract_material_from_type_name(type_name):
     return 'Unknown'
 
 # Process columns and aggregate identical types/materials/dimensions
+# Process columns and aggregate identical types/materials/dimensions
 def process_columns(columns):
     column_info_dict = {}
 
@@ -79,10 +89,13 @@ def process_columns(columns):
                 continue
 
             # Calculate volume and round it to 5 digits
-            volume = round(length * width * height, 5)
+            volume = round(length * width * height, 1)
 
-            # Create a key based on type, material, dimensions, and height
-            key = (type_name, material, volume, round(height, 1))
+            # Round height to one decimal place
+            height = round(height, 1)
+
+            # Create a key based on type, material, volume, and height
+            key = (type_name, material, volume, height)
 
             # Update the count and volume in the dictionary
             if key in column_info_dict:
@@ -101,6 +114,7 @@ def process_columns(columns):
 
     return column_info_dict
 
+
 # Add reinforcement data based on concrete elements
 def add_reinforcement_info(info_dict):
     reinforcement_info = {}
@@ -114,12 +128,18 @@ def add_reinforcement_info(info_dict):
                 # Assuming all non-column concrete elements are slabs
                 reinforcement_volume = data['volume'] * reinforcement_density_slab
 
+            # Round height to one decimal place
+            rounded_height = round(height, 1)
+
             # Create a new entry for reinforcement with height included in the key
-            reinforcement_key = (type_name + '_Reinforcement', 'Reinforcement', reinforcement_volume, height)
-            reinforcement_info[reinforcement_key] = {
-                'count': 1,  # Count is always 1 for reinforcement
-                'volume': reinforcement_volume
-            }
+            reinforcement_key = (type_name + '_Reinforcement', 'Reinforcement', reinforcement_volume, rounded_height)
+            
+            # Check if the reinforcement type is already in the dictionary
+            if reinforcement_key not in reinforcement_info:
+                reinforcement_info[reinforcement_key] = {
+                    'count': 1,  # Count is always 1 for reinforcement
+                    'volume': reinforcement_volume
+                }
 
     # Merge reinforcement info into the original dictionary
     info_dict.update(reinforcement_info)
@@ -167,7 +187,7 @@ column_info_dict = process_columns(columns)
 column_info_dict = add_reinforcement_info(column_info_dict)
 
 # Open the workbook with xlwings
-wb = xw.Book('C:/Users/Lenovo/Documents/Studium/DTU/2_Semester/BIM/A2/LCA_Advanced_BIM_to_Python.xlsx') #Input Excel file path here (Excel sheet can be found in A2 GitHub)
+wb = xw.Book('C:/Users/Lenovo/Documents/Studium/DTU/2_Semester/BIM/A2/LCA_Advanced_BIM_to_Python.xlsx')
 
 # Select the 'Input' sheet to write the data
 input_sheet = wb.sheets['Input']
@@ -241,15 +261,11 @@ for (type_name, material, volume, height), data in column_info_dict.items():
             'height': height,
             'normalized_gwp': normalized_gwp
         })
-
-        print(type_name, height, 'GWP including reinforcement '+  str(real_gwp))
+        print(real_gwp) #need to save these in a list to add as speckle attribute
 
 # Print the list (if needed)
-#for entry in gwp_data_list:
-    #print(f"Type: {entry['type_name']}, Height: {entry['height']}m, Normalized GWP: {entry['normalized_gwp']}")
-
-
-
+for entry in gwp_data_list:
+    print(f"Type: {entry['type_name']}, Height: {entry['height']}m, Normalized GWP: {entry['normalized_gwp']}")
 
 
 
@@ -293,6 +309,9 @@ def interpolate_color(normalized_gwp):
 gwp_data_with_colors = []
 
 # Check and print entries in the list before processing
+print("Initial Data Inspection:")
+for entry in gwp_data_list:
+    print(entry)
 
 for entry in gwp_data_list:
     type_name = entry.get('type_name', 'Unknown')  # Get the type name or use 'Unknown' if missing
@@ -313,8 +332,4 @@ for entry in gwp_data_list:
 # Example: Print the data with colors
 for type_name, height, normalized_gwp, color in gwp_data_with_colors:
     print(f"Type: {type_name}, Height: {height}m, Normalized GWP: {normalized_gwp}, Color: {color}")
-
-
-
-
 
