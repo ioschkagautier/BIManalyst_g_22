@@ -2,12 +2,6 @@
 # C:/Users/Lenovo/Documents/Studium/DTU/2_Semester/BIM/CES_BLD_24_06_STR.ifc
 #Token: e84c64a17e9103569a55ccb97e2f00526982240229
 
-
-#pip install ifcopenshell
-#pip install xlwings
-#pip install specklepy
-
-
 #for Excel part
 import ifcopenshell
 import ifcopenshell.geom
@@ -21,8 +15,8 @@ from specklepy.transports.server import ServerTransport
 from specklepy.api.operations import send
 import random
 
-# Open the IFC file
-ifc_file = ifcopenshell.open('C:/Users/Lenovo/Documents/Studium/DTU/2_Semester/BIM/CES_BLD_24_06_STR.ifc')
+# Open the IFC file 
+ifc_file = ifcopenshell.open('/Users/ioschkagautier/Desktop/DTU/Advanced BIM/CES_BLD_24_06_STR.ifc')
 
 # Define concrete strength assumption for missing data
 concrete_strength = " C25/30"
@@ -194,7 +188,7 @@ column_info_dict = process_columns(columns)
 column_info_dict = add_reinforcement_info(column_info_dict)
 
 # Open the workbook with xlwings
-wb = xw.Book('C:/Users/Lenovo/Documents/Studium/DTU/2_Semester/BIM/A2/LCA_Advanced_BIM_to_Python.xlsx')
+wb = xw.Book('/Users/ioschkagautier/Desktop/DTU/Advanced BIM/LCA_Advanced_BIM_to_Python.xlsx')
 
 # Select the 'Input' sheet to write the data
 input_sheet = wb.sheets['Input']
@@ -266,12 +260,13 @@ for (type_name, material, volume, height), data in column_info_dict.items():
         gwp_data_list.append({
             'type_name': type_name,
             'height': height,
-            'normalized_gwp': normalized_gwp
+            'normalized_gwp': normalized_gwp,
+            'real_gwp': real_gwp
         })
 
 # Print the list (if needed)
 for entry in gwp_data_list:
-    print(f"Type: {entry['type_name']}, Height: {entry['height']}m, Normalized GWP: {entry['normalized_gwp']}")
+    print(f"Type: {entry['type_name']}, Height: {entry['height']}m, Normalized GWP: {entry['normalized_gwp']}, Real GWP: {entry['real_gwp']}")
 
 
 
@@ -322,7 +317,8 @@ for entry in gwp_data_list:
 for entry in gwp_data_list:
     type_name = entry.get('type_name', 'Unknown')  # Get the type name or use 'Unknown' if missing
     height = entry.get('height', 'Unknown')  # Get the height or use 'Unknown' if missing
-    normalized_gwp = ensure_float(entry.get('normalized_gwp'))  # Ensure the GWP value is converted to float
+    normalized_gwp = ensure_float(entry.get('normalized_gwp'))  # Ensure the normalized GWP value is converted to float
+    real_gwp = ensure_float(entry.get('real_gwp')) # Ensure the real GWP value is converted to float
     
     # Only assign colors if GWP is a valid number
     if normalized_gwp is not None:
@@ -331,13 +327,13 @@ for entry in gwp_data_list:
         color = (255, 255, 255)  # Default to white if GWP is not available or invalid
 
     # Append the data along with the color to the new list
-    gwp_data_with_colors.append((type_name, height, normalized_gwp, color))
+    gwp_data_with_colors.append((type_name, height, normalized_gwp, real_gwp, color))
 
 # Now gwp_data_with_colors contains the Type_name, Height, Normalized GWP, and corresponding Color
 
 # Example: Print the data with colors
-for type_name, height, normalized_gwp, color in gwp_data_with_colors:
-    print(f"Type: {type_name}, Height: {height}m, Normalized GWP: {normalized_gwp}, Color: {color}")
+for type_name, height, normalized_gwp, real_gwp, color in gwp_data_with_colors:
+    print(f"Type: {type_name}, Height: {height}m, Normalized GWP: {normalized_gwp}, Real GWP: {real_gwp}, Color: {color}")
 
 print(gwp_data_with_colors)
 
@@ -350,7 +346,7 @@ def generate_random_color():
 
 # Convert the list to a dictionary for quick look-up
 predefined_colors = {
-    (item[0], item[1]): item[3] for item in gwp_data_with_colors
+    (item[0], item[1]): item[4] for item in gwp_data_with_colors
 }
 
 # Helper function to convert RGB to Hexadecimal
@@ -383,7 +379,7 @@ def calculate_bounding_box(vertices):
     return length, width, height
 
 # 1. Open the IFC file
-ifc_file_path = 'C:/Users/Lenovo/Documents/Studium/DTU/2_Semester/BIM/CES_BLD_24_06_STR.ifc'
+ifc_file_path = '/Users/ioschkagautier/Desktop/DTU/Advanced BIM/CES_BLD_24_06_STR.ifc'
 ifc_file = ifcopenshell.open(ifc_file_path)
 
 # 2. Extract all columns
@@ -439,7 +435,7 @@ for column in columns:
     matching_gwp = None  # Default in case no match is found
     for entry in gwp_data_list:
         if entry['type_name'] == object_type and entry['height'] == height:
-            matching_gwp = entry['normalized_gwp']
+            matching_gwp = entry['real_gwp']
             break  # Stop searching once we've found the match
 
     if matching_gwp is None:
@@ -466,7 +462,7 @@ for column in columns:
 
     # Assign other attributes (like height) and GWP value
     speckle_mesh['height'] = height  # Add height as a direct attribute
-    speckle_mesh['GWP'] = matching_gwp  # Add GWP as a direct attribute for each individual column
+    speckle_mesh['GWP'] = f'{round(matching_gwp, 2)} [kg CO2-eq / Object]'  # Add GWP as a direct attribute for each individual column
 
     # Create a Speckle Base object for the column, which includes the mesh and GUID
     column_object = Base()
