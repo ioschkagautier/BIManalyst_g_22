@@ -2,6 +2,12 @@
 # C:/Users/Lenovo/Documents/Studium/DTU/2_Semester/BIM/CES_BLD_24_06_STR.ifc
 #Token: e84c64a17e9103569a55ccb97e2f00526982240229
 
+
+#pip install ifcopenshell
+#pip install xlwings
+#pip install specklepy
+
+
 #for Excel part
 import ifcopenshell
 import ifcopenshell.geom
