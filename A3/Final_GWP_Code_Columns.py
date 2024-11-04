@@ -15,7 +15,7 @@ from specklepy.transports.server import ServerTransport
 from specklepy.api.operations import send
 import random
 
-#put file path
+#OBS: Put your own file paths here!!!
 Ifc_file_path = 'C:/Users/Lenovo/Documents/Studium/DTU/2_Semester/BIM/CES_BLD_24_06_STR.ifc'
 Excel_file_path = 'C:/Users/Lenovo/Documents/Studium/DTU/2_Semester/BIM/A2/LCA_Advanced_BIM_to_Python_slabs.xlsx'
 
