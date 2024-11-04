@@ -15,8 +15,12 @@ from specklepy.transports.server import ServerTransport
 from specklepy.api.operations import send
 import random
 
+#put file path
+Ifc_file_path = 'C:/Users/Lenovo/Documents/Studium/DTU/2_Semester/BIM/CES_BLD_24_06_STR.ifc'
+Excel_file_path = 'C:/Users/Lenovo/Documents/Studium/DTU/2_Semester/BIM/A2/LCA_Advanced_BIM_to_Python_slabs.xlsx'
+
 # Open the IFC file 
-ifc_file = ifcopenshell.open('/Users/ioschkagautier/Desktop/DTU/Advanced BIM/CES_BLD_24_06_STR.ifc')
+ifc_file = ifcopenshell.open(Ifc_file_path)
 
 # Define concrete strength assumption for missing data
 concrete_strength = " C25/30"
@@ -188,7 +192,7 @@ column_info_dict = process_columns(columns)
 column_info_dict = add_reinforcement_info(column_info_dict)
 
 # Open the workbook with xlwings
-wb = xw.Book('/Users/ioschkagautier/Desktop/DTU/Advanced BIM/LCA_Advanced_BIM_to_Python.xlsx')
+wb = xw.Book(Excel_file_path)
 
 # Select the 'Input' sheet to write the data
 input_sheet = wb.sheets['Input']
@@ -379,8 +383,8 @@ def calculate_bounding_box(vertices):
     return length, width, height
 
 # 1. Open the IFC file
-ifc_file_path = '/Users/ioschkagautier/Desktop/DTU/Advanced BIM/CES_BLD_24_06_STR.ifc'
-ifc_file = ifcopenshell.open(ifc_file_path)
+
+ifc_file = ifcopenshell.open(Ifc_file_path)
 
 # 2. Extract all columns
 columns = ifc_file.by_type("IfcColumn")
