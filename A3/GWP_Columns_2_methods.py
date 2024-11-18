@@ -1,4 +1,27 @@
 
+#**Tool Description:**  
+# Our tool provides a solution by tracking information from the BIM model and integrating it with actual material values as well as integrating assumptions on missing data, 
+# to create a comprehensive overview for LCA evaluation. This is done by implementing a preset LCA Excel table with values for materials used from the EPD-data base. #
+# The unique column Types, identifyed by the Key(Type_name, height, level), get witten into excel where their materiality gets mapped directly to the EPD Data-base to extract 
+# the valid CO2 value for each material type. Since no information on reiinforcement was available within the IFC file an estimate of the amount of steel (Kg/m3) gets assigned to 
+# each column type. The CO2 data gets pulled back into python where the reinforcement co2 values get added on to the parent columns CO2 values resulting in a final value for 
+# each unique column type. The output is fed into a Speckle viewer, displaying data with a visual color overlay to indicate environmental impact. Each object in the model is clickable, 
+# showing its dimensions and corresponding CO₂ impact.
+
+#This tool contains an extra feature where the user can chose between two display methods for viewing the aquired Data in Speckle. 
+
+   #METHOD 1 is to display the true CO2 values for each object.
+   
+   #METHOD 2 is to show adjusted CO2 values for each Object, where an adjustment factor has been added to take into account the increasing CO2 demand for the columns as floors are added. The logic of CO2 allocation, according to the representive level the column is assigned to, is as follows:
+
+   #level_allocation_factor = 1 - (average_gwp_top_level / average_gwp_level_0)
+   #level_allocation_factor_pr_level = level_allocation_factor/n
+   #adjustment_factor = (-(n - L) + L) * level_allocation_factor_pr_level 
+   #djusted_gwp = real_gwp + (real_gwp * adjustment_factor)
+
+   #Where n is the amount of storys excluding the ground floor and L is the individual columns assigned level.
+
+
 #---------------Please intall in the command prompt before use---------------------------------------------------
 
 'pip install ifcopenshell matplotlib xlwings specklepy'
@@ -25,8 +48,8 @@ from specklepy.api.operations import send
 
 Ifc_file_path = 'C:/Users/Lenovo/Documents/Studium/DTU/2_Semester/BIM/CES_BLD_24_06_STR.ifc'
 Excel_file_path = 'C:/Users/Lenovo/Documents/Studium/DTU/2_Semester/BIM/A2/LCA_Advanced_BIM_to_Python_slabs.xlsx'
-personal_access_token = "e84c64a17e9103569a55ccb97e2f00526982240229"  # Replace this with your actual personal speckle access token (PAT)
-stream_id = "2a3df00e3e"  # Your specified speckle stream ID
+personal_access_token = "e84c64a17e9103569a55ccb97e2f00526982240229"  # Replace this with your actual personal speckle access token (PAT) (create one at https://speckle.xyz/profile once you have an account) SetUpGuide:https://speckle.guide/dev/tokens.html
+stream_id = "2a3df00e3e"  # Your specified speckle stream ID (You can find this as part of the URL when you click on a project you created)
 host = "app.speckle.systems" # Specify the correct server host (e.g., app.speckle.systems as default for viewer)
 
 
