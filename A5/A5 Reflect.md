@@ -34,11 +34,11 @@ This experience deepened our technical skills and highlighted how OpenBIM can ma
 
 - **For My Thesis:**  
 	Bruno - OpenBIM will be used to evaluate modular designs' environmental impact, with tools like ifcOpenShell and Speckle playing a central role in analyzing LCA and CO₂ emissions.  
-	Janin - Improvement of system thinking and its modelling. Remodelling and linking of data structures.
+	Janin - Enhancement of system thinking and its modelling. Remodelling and linking of data structures.
   Ioshka -
 - **In Professional Life:**  
 	Bruno - OpenBIM will become an essential part of my workflow, enabling better collaboration, data integration, and in architectural design and project development.
-	Janin - It will be used to enable better informed decisions to be made based on evidence and analysis, rather than on best practice.
+	Janin - Probably to enable better informed decisions to be made based on evidence and analysis, rather than on best practice.
 	Ioshka -
 ---
 
@@ -71,14 +71,14 @@ The number of tools was appropriate.
 
 ## **(As a Group) Summary of the Feedback You Received on Your Tutorial**
 
-What feedback did you receive on your tutorial?  
+They very much liked the tool, but we could improve it by marking up more instructions and discriptions within the main file to remove potential barriers of getting started on using the script. 
 
 - **Positive Feedback:**  
   - The visualization in Speckle effectively communicated CO₂ impacts and made LCA data more actionable.  
 
 - **Suggestions for Improvement:**  
   Write an intoduction in the main file aswell since the tool can be a little complex
-  ???????
+
 
 ## **(As a Group) Did the Tool Address the Use Case?**
 
@@ -89,20 +89,22 @@ Yes, the tool successfully addressed the identified use case by:
 - Integrating EPD values to provide CO₂-eq metrics for LCA.  
 - Visualizing the environmental impact in Speckle for easier decision-making.
 
+However direct comparison with the report is rather complicated since the report does not give detailed information on where their CO2 avlues come from or what assumptions they made.
+
 
 ## **(Individual) Your Future for Advanced Use of OpenBIM**
 
 Are you likely to use OpenBIM tools in your thesis?  
  
 Bruno - Yes, OpenBIM tools will play a key role in my thesis, especially for analyzing sustainability metrics in modular building designs. Especially Detail checking and overview creation of proposed desgin and controlling mistakes will be a key element to keep track.
-Janin -
+Janin - Probably yes.
 Ioshka -
 
 
 Are you likely to use OpenBIM tools in your professional life in the next 10 years?  
 
 Bruno - Absolutely. OpenBIM workflows are essential for collaboration, automation, and sustainability in modern architectural and construction practices. In the future more and more companies will adapt and due to rising interest it will be one of the key elements for more efficient projects.
-Janin -
+Janin - Yes, if i chose to stay in engineering for the next ten years.
 Ioshka -
 
 ## **(Individual) Wrap-Up**
