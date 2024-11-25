@@ -6,7 +6,7 @@
 The concept we focused on was conducting **Life Cycle Assessment (LCA)** using OpenBIM workflows to analyze and visualize CO₂-eq emissions for building lifecycle phases (A1-A3, C3, C4). Our learning journey was transformative, moving from a basic understanding of OpenBIM tools to developing a script capable of extracting, processing, and visualizing LCA data.  
 Key learning milestones included:
 1. Understanding IFC data structures and extracting relevant attributes using **ifcOpenShell**.
-2. Leanring to access stored data from the IFC through **scripting in Phython**.
+2. Learning to access stored data from the IFC through **scripting in Phython**.
 3. Integrating material-specific CO₂ data from **EPD databases** with BIM models and our script.
 4. Creating a user-friendly visualization in **Speckle** to present environmental impacts.
 
@@ -35,11 +35,11 @@ This experience deepened our technical skills and highlighted how OpenBIM can ma
 - **For My Thesis:**  
 	Bruno - OpenBIM will be used to evaluate modular designs' environmental impact, with tools like ifcOpenShell and Speckle playing a central role in analyzing LCA and CO₂ emissions.  
 	Janin - Enhancement of system thinking and its modelling. Remodelling and linking of data structures.
-  Ioshka -
+  Ioschka - OpenBIM culd be relevant by integrating LCA workflows enabling an analysis of sustainability metrics to optimize material usage for efficient, sustainable designs for eco-buildings.
 - **In Professional Life:**  
 	Bruno - OpenBIM will become an essential part of my workflow, enabling better collaboration, data integration, and in architectural design and project development.
 	Janin - Probably to enable better informed decisions to be made based on evidence and analysis, rather than on best practice.
-	Ioshka -
+	Ioschka - OpenBIM will enhance collaboration esuring efficient data exchange, sustainable design practices and adaptability for future modifications or maintenance.
 ---
 
 ## **Your process of developing the tutorial?**
