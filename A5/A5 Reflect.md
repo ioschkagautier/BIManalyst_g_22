@@ -104,7 +104,7 @@ Ioshka -
 Are you likely to use OpenBIM tools in your professional life in the next 10 years?  
 
 Bruno - Absolutely. OpenBIM workflows are essential for collaboration, automation, and sustainability in modern architectural and construction practices. In the future more and more companies will adapt and due to rising interest it will be one of the key elements for more efficient projects.
-Janin - Yes, if i chose to stay in engineering for the next ten years.
+Janin - Yes
 Ioshka -
 
 ## **(Individual) Wrap-Up**
