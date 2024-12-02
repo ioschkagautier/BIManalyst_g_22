@@ -71,13 +71,13 @@ The number of tools was appropriate.
 
 ## **(As a Group) Summary of the Feedback You Received on Your Tutorial**
 
-They very much liked the tool, but we could improve it by marking up more instructions and discriptions within the main file to remove potential barriers of getting started on using the script. 
+They very much liked the tool, but we could improve it by marking up more instructions and discriptions within the main file to remove potential barriers of getting started on using the script. The next steps would be to improve The Robustness of the code when used on other models.
 
 - **Positive Feedback:**  
-  - The visualization in Speckle effectively communicated CO₂ impacts and made LCA data more actionable.  
+  - The visualization in Speckle effectively communicated CO₂ impacts and made LCA data more actionable. Managed to do the work that you otherwise pay for when using comercial software.
 
 - **Suggestions for Improvement:**  
-  Write an intoduction in the main file aswell since the tool can be a little complex
+  Write an intoduction in the main file aswell since the tool can be a little complex. Improve the length of the code, make it shorter. Use another method other tha bounding box to extract geometry, for example voxelization. Add more robustness by implementing more if statements when extracting parameters.Give the Toturial a better name (Not just A4 Tutorial)
 
 
 ## **(As a Group) Did the Tool Address the Use Case?**
