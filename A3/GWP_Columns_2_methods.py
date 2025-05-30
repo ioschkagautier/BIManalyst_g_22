@@ -62,7 +62,7 @@ host = "app.speckle.systems" # Specify the correct server host (e.g., app.speckl
 # adjusted_gwp = real_gwp + (real_gwp * adjustment_factor)
 
 #Choose GWP calculation method (1 for Real GWP, 2 for Adjusted GWP)
-method = '2' #Put 1 or 2
+method = '1' #Put 1 or 2
 
 #-------------Parameters-------------------------------------------------------------------------------------------------
 
